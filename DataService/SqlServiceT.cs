@@ -39,7 +39,10 @@ namespace AWRD.DataService
 
             var results = connection.Query<T>(query, buffered: false);
 
-            return results;
+            foreach (var result in results)
+            {
+                yield return result;
+            }
         }
     }
 }
