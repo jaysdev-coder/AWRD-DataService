@@ -6,6 +6,6 @@ namespace AWRD.DataService
     {
         abstract Task<IReadOnlyCollection<T>> ExecuteQuery(string query);
         abstract Task Submit(string query);
-        abstract Task<Stream> GetResultStream(string query);
+        abstract IEnumerable<T> GetResultStream(string query);
     }
 }

@@ -27,16 +27,19 @@ namespace AWRD.DataService
         public async Task<IReadOnlyCollection<T>> ExecuteQuery(string query)
         {
             using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
-
+        
             var results = await connection.QueryAsync<T>(query);
 
             return results.ToList().AsReadOnly();
         }
 
-        public Task<Stream> GetResultStream(string query)
+        public IEnumerable<T> GetResultStream(string query)
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_connectionString);
+
+            var results = connection.Query<T>(query, buffered: false);
+
+            return results;
         }
     }
 }
