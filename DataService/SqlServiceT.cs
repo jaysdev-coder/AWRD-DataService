@@ -37,12 +37,7 @@ namespace AWRD.DataService
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var results = connection.Query<T>(query, buffered: false);
-
-            foreach (var result in results)
-            {
-                yield return result;
-            }
+            return connection.Query<T>(query, buffered: false);
         }
     }
 }
