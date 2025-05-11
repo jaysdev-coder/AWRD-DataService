@@ -20,8 +20,8 @@ namespace AWRD.DataService
 
         public async Task Submit(string query)
         {
-            // Implement Submit method
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_connectionString);
+            await connection.ExecuteAsync(query);
         }
 
         public async Task<IReadOnlyCollection<T>> ExecuteQuery(string query)
