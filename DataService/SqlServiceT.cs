@@ -15,22 +15,6 @@ public class SqlServiceT<T>(string connectionString) : SqlService(connectionStri
         return result;
     }
 
-    public new async Task<bool> Submit(string query)
-    {
-        try
-        {
-            using var connection = new SqlConnection(_connectionString);
-
-            await connection.ExecuteAsync(query);
-
-            return true; 
-        }
-        catch
-        {
-            return false; 
-        }
-    }
-
     public new IEnumerable<T> GetResultStream(string query)
     {
         using var connection = new SqlConnection(_connectionString);
