@@ -1,24 +1,49 @@
-﻿namespace AWRD.DataService
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+
+namespace AWRD.DataService;
+
+public class SqlService : ISqlService
 {
-    public class SqlService : ISqlService
+    protected string _connectionString { get; }
+
+    public SqlService(string connectionString)
     {
-        private string ConnectionString { get; init; }
-
-        public SqlService(string connectionString) => ConnectionString = connectionString;
-
-        public Task<Stream> GetResultStream(string query)
+        if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new NotImplementedException();
+            throw new ArgumentException("Connection string cannot be null or empty.", nameof(connectionString));
         }
 
-        public Task<IReadOnlyCollection<dynamic>> ExecuteQuery(string query)
-        {
-            throw new NotImplementedException();
-        }
+        _connectionString = connectionString;
+    }
 
-        public Task Submit(string query)
+    public async Task<IEnumerable<dynamic>> ExecuteQuery(string query)
+    {
+        using var connection = new SqlConnection(_connectionString);
+
+        return await connection.QueryAsync(query);
+    }
+
+    public async Task<bool> Submit(string query)
+    {
+        try
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_connectionString);
+
+            await connection.ExecuteAsync(query);
+
+            return true;
         }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public IEnumerable<dynamic> GetResultStream(string query)
+    {
+        using var connection = new SqlConnection(_connectionString);
+
+        return connection.Query(query, buffered: false);
     }
 }

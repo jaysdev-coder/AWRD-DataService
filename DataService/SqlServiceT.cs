@@ -2,42 +2,39 @@
 using Dapper;
 using AWRD.DataService.Model;
 
-namespace AWRD.DataService
+namespace AWRD.DataService;
+
+public class SqlServiceT<T>(string connectionString) : SqlService(connectionString), ISqlServiceT<T> where T : ITableModel
 {
-    public class SqlServiceT<T> : ISqlServiceT<T> where T : ITableModel
+    public new async Task<IEnumerable<T>> ExecuteQuery(string query)
     {
-        private readonly string _connectionString;
+        using var connection = new SqlConnection(_connectionString);
 
-        public SqlServiceT(string connectionString)
-        {
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
-                throw new ArgumentException("Connection string cannot be null or empty", nameof(connectionString));
-            }
+        var result = await connection.QueryAsync<T>(query);
 
-            _connectionString = connectionString;
-        }
+        return result;
+    }
 
-        public async Task Submit(string query)
+    public new async Task<bool> Submit(string query)
+    {
+        try
         {
             using var connection = new SqlConnection(_connectionString);
+
             await connection.ExecuteAsync(query);
-        }
 
-        public async Task<IReadOnlyCollection<T>> ExecuteQuery(string query)
+            return true; 
+        }
+        catch
         {
-            using var connection = new SqlConnection(_connectionString);
-        
-            var results = await connection.QueryAsync<T>(query);
-
-            return results.ToList().AsReadOnly();
+            return false; 
         }
+    }
 
-        public IEnumerable<T> GetResultStream(string query)
-        {
-            using var connection = new SqlConnection(_connectionString);
+    public new IEnumerable<T> GetResultStream(string query)
+    {
+        using var connection = new SqlConnection(_connectionString);
 
-            return connection.Query<T>(query, buffered: false);
-        }
+        return connection.Query<T>(query, buffered: false);
     }
 }
