@@ -2,6 +2,6 @@
 {
     public interface ITableModel
     {
-        string Label { get; }
+        abstract static string Label { get; }
     }
 }
