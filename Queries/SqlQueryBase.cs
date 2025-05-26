@@ -3,7 +3,7 @@ using SqlKata.Compilers;
 
 namespace AWRD.Queries
 {
-    public abstract class ISqlQuery : IQueryT<Query>
+    public abstract class SqlQueryBase : IQueryT<Query>
     {
         public abstract Query BuildBaseQuery();
 

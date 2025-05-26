@@ -7,7 +7,7 @@ namespace AWRD.Queries
     /// Represents a generic SQL query class for a specific entity type.
     /// </summary>
     /// <typeparam name="T">The type of entity being queried against the table, which must implement ITableModel.</typeparam>
-    public abstract class ISqlQueryT<T> : ISqlQuery where T : ITableModel
+    public abstract class SqlQueryTBase<T> : SqlQueryBase where T : ITableModel
     {
         /// <summary>
         /// Gets the name of the entity being queried against the table.
