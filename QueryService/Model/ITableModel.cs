@@ -1,4 +1,4 @@
-﻿namespace AWRD.DataService.Model
+﻿namespace AWRD.QueryService.Model
 {
     public interface ITableModel
     {

@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 
-namespace AWRD.DataService;
+namespace AWRD.QueryService;
 
 public class SqlService : ISqlService
 {

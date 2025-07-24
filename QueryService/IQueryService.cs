@@ -1,4 +1,4 @@
-﻿namespace AWRD.DataService;
+﻿namespace AWRD.QueryService;
 
 public interface IQueryService
 {

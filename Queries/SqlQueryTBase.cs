@@ -1,4 +1,4 @@
-﻿using AWRD.DataService.Model;
+﻿using AWRD.QueryService.Model;
 using SqlKata;
 
 namespace AWRD.Queries

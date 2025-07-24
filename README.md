@@ -2,7 +2,7 @@
 
 ## Project Structure and Components
 
-### DataService Folder
+### QueryService Folder
 
 - **IQueryService**: Defines the core interface for executing and submitting queries, as well as streaming results. Methods include:
   - `Task<IEnumerable<dynamic>> ExecuteQuery(string query)`
@@ -41,7 +41,7 @@
 Here is a basic example demonstrating how to use the `SqlService` and a custom query class:
 
 ```csharp
-using AWRD.DataService;
+using AWRD.QueryService;
 using AWRD.Queries;
 using SqlKata;
 
@@ -72,7 +72,7 @@ This example shows how to define a table model, create a query for that model, c
 Here is another example showing how to define a query class and use the `CompileQuery` method to generate a SQL string:
 
 ```csharp
-using AWRD.DataService;
+using AWRD.QueryService;
 using AWRD.Queries;
 using SqlKata;
 

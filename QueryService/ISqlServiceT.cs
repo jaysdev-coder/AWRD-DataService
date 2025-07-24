@@ -1,6 +1,6 @@
-﻿using AWRD.DataService.Model;
+﻿using AWRD.QueryService.Model;
 
-namespace AWRD.DataService;
+namespace AWRD.QueryService;
 
 public interface ISqlServiceT<T> : ISqlService where T : ITableModel
 {

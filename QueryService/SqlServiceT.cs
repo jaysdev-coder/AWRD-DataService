@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using Dapper;
-using AWRD.DataService.Model;
+using AWRD.QueryService.Model;
 
-namespace AWRD.DataService;
+namespace AWRD.QueryService;
 
 public class SqlServiceT<T>(string connectionString) : SqlService(connectionString), ISqlServiceT<T> where T : ITableModel
 {
