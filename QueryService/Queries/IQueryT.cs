@@ -1,4 +1,4 @@
-﻿namespace AWRD.Queries
+﻿namespace AWRD.QueryService.Queries
 { 
 /// <summary>
 /// Defines a generic interface for building and compiling queries.

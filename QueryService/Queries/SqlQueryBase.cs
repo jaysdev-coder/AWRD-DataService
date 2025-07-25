@@ -1,7 +1,7 @@
 ﻿using SqlKata;
 using SqlKata.Compilers;
 
-namespace AWRD.Queries
+namespace AWRD.QueryService.Queries
 {
     public abstract class SqlQueryBase : IQueryT<Query>
     {

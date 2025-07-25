@@ -1,7 +1,7 @@
 ﻿using AWRD.QueryService.Model;
 using SqlKata;
 
-namespace AWRD.Queries
+namespace AWRD.QueryService.Queries
 {
     /// <summary>
     /// Represents a generic SQL query class for a specific entity type.
